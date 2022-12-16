@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { baseColor } from "../../constants/colors";
 
 const SignContainer = styled.main`
     display: flex;
@@ -17,13 +18,13 @@ const SignContainer = styled.main`
       position: absolute;
       left: 16px;
       color: #afafaf;
-      font-size: 18px;
+      font-size: 20px;
       pointer-events: none;
       transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
     }
   }
   a{
-    color: #52B6FF;
+    color: ${baseColor};
     font-size: 14px;
     margin-top: 1.5rem;
   }
