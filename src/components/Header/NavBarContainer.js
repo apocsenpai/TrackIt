@@ -29,6 +29,7 @@ const NavBar = styled.nav`
   top: 0;
   left: 0;
   box-shadow: 0px 4px 4px 0px #00000026;
+  z-index: 1;
   a{
     text-decoration: none;
   }

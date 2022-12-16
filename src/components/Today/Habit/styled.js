@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { secondaryColor, textColor } from "../../../constants/colors";
-export const HabitCard = styled.div`
+export const HabitCard = styled.li`
   position: relative;
   width: 340px;
   min-height: 91px;

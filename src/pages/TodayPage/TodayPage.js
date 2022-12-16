@@ -1,9 +1,10 @@
 import NavBarContainer from "../../components/Header/NavBarContainer";
 import MenuContainer from "../../components/Footer/MenuContainer";
-import { MainContainer, NoHabitMessage, Subtitle } from "./styled";
-import Habit from "../../components/Today/Habit/Habit";
+import { MainContainer, Subtitle } from "./styled";
+
 import dayjs from "dayjs";
 import {weekDays} from "../../constants/weekDays";
+import Habits from "../../components/Today/Habits/Habits";
 const TodayPage = () => {
   const day = dayjs().$D;
   const month = dayjs().$M+1;
@@ -19,11 +20,7 @@ const TodayPage = () => {
           <h2>{`${handleWeekDay(idWeekDay)}, ${day}/${month}`}</h2>
           <Subtitle>Nenhum hábito concluído ainda</Subtitle>
         </section>
-        <Habit />
-        <NoHabitMessage>
-          Você não tem nenhum hábito cadastrado para hoje. Adicione um hábito para
-          começar a trackear!
-        </NoHabitMessage>
+        <Habits/>
       </MainContainer>
       <MenuContainer />
     </>

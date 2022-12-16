@@ -41,6 +41,7 @@ const Menu = styled.footer`
   padding: 0px 31px;
   justify-content: space-between;
   align-items: center;
+  z-index: 1;
   a {
     text-decoration: none;
     color: ${baseColor};

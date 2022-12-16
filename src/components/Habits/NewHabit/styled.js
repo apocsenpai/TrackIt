@@ -1,7 +1,11 @@
 import styled from "styled-components";
-import { baseColor, secondaryColor } from "../../../constants/colors";
+import {
+  backgroundColor,
+  baseColor,
+  secondaryColor,
+} from "../../../constants/colors";
 import BlueButton from "../../Common/BlueButton";
-export const HabitInputGroup = styled.form`
+export const HabitAddForm = styled.form`
   width: 340px;
   height: 180px;
   border-radius: 5px;
@@ -27,8 +31,12 @@ export const Input = styled.input`
     outline: none;
     border: 1.5px solid ${baseColor};
   }
-  &::placeholder{
-    color: #DBDBDB;
+  &::placeholder {
+    color: #dbdbdb;
+  }
+  &:disabled {
+    border: 1px solid #d4d4d4;
+    background-color: ${backgroundColor};
   }
 `;
 export const ButtonGroup = styled.div`
@@ -37,14 +45,18 @@ export const ButtonGroup = styled.div`
   align-self: flex-start;
   margin-bottom: 30px;
 `;
-export const DayButton = styled.button`
-  background-color: #ffffff;
-  border: 1px solid #d5d5d5;
+export const DayButton = styled.div`
+  background-color: ${({ isSelected }) =>
+    isSelected ? "#CFCFCF" : secondaryColor};
+  border: 1px solid ${({ isSelected }) => (isSelected ? "#CFCFCF" : "#d5d5d5")};
   border-radius: 5px;
-  color: #dbdbdb;
+  color: ${({ isSelected }) => (isSelected ? secondaryColor : "#dbdbdb")};
   height: 30px;
   width: 30px;
   font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   &:hover {
     opacity: 0.7;

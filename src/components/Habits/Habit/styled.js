@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { secondaryColor, textColor } from "../../../constants/colors";
-export const HabitCard = styled.div`
+export const HabitCard = styled.li`
   position: relative;
   width: 340px;
   min-height: 91px;
@@ -20,17 +20,13 @@ export const ButtonGroup = styled.div`
   gap: 4px;
 `;
 export const DayButton = styled.button`
-  background-color: #ffffff;
-  border: 1px solid #d5d5d5;
+  background-color: ${({isSelected})=> isSelected ? "#CFCFCF" : secondaryColor};;
+  border: 1px solid ${({isSelected})=> isSelected ? "#CFCFCF" : "#d5d5d5"};
   border-radius: 5px;
-  color: #dbdbdb;
+  color: ${({isSelected})=> isSelected ? secondaryColor : "#dbdbdb"};
   height: 30px;
   width: 30px;
   font-size: 20px;
-  cursor: pointer;
-  &:hover {
-    opacity: 0.7;
-  }
 `;
 export const HabitTitle = styled.h3`
   font-size: 20px;

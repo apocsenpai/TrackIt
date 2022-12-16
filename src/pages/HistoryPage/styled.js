@@ -7,10 +7,10 @@ import {
 
 export const MainContainer = styled.div`
   margin-top: 70px;
-  padding: 30px 18px;
+  padding: 30px 18px 100px 18px;
   width: 100%;
   background-color: ${backgroundColor};
-  min-height: 80vh;
+  min-height: 90vh;
   section {
     display: flex;
     justify-content: space-between;

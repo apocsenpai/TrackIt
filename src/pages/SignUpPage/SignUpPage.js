@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/img/logoSign.svg";
 import BlueButton from "../../components/Common/BlueButton";
@@ -8,9 +8,7 @@ import SignInput from "../../components/Common/SignInput";
 import { BASE_URL } from "../../constants/BASE_URL";
 import { ThreeDots } from "react-loader-spinner";
 import { secondaryColor } from "../../constants/colors";
-import { TokenContext } from "../../Contexts/TokenContext";
 const SignUpPage = () => {
-  const {} = useContext(TokenContext)
   const [signUpForm, setSignUpForm] = useState({
     email: "",
     name: "",
