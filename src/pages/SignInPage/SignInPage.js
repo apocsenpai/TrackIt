@@ -7,8 +7,10 @@ import { ThreeDots } from "react-loader-spinner";
 import { secondaryColor } from "../../constants/colors";
 import { BASE_URL } from "../../constants/BASE_URL";
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { TokenContext } from "../../Contexts/TokenContext";
 const SignInPage = () => {
+  const {handleToken} = useContext(TokenContext);
   const [signInForm, setSignInForm] = useState({
     email: "",
     password: "",
@@ -23,9 +25,11 @@ const SignInPage = () => {
     setIsLoading(!isLoading);
     const url = `${BASE_URL}auth/login`;
     const body = signInForm;
-    console.log(body)
     const promise = axios.post(url, body);
-    promise.then((res) => navigate("/hoje"));
+    promise.then((res) => {
+      navigate("/hoje");
+      handleToken(res.data.token);
+    });
     promise.catch((err) => {
       alert("Usuário ou Senha inválidos! Por favor, tente novamente.");
       console.log(err)

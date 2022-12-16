@@ -9,21 +9,22 @@ import { useState } from "react";
 
 function App() {
   const [token, setToken] = useState("");
-  function handleToken(userToken){
+
+  function handleToken(userToken) {
     setToken(userToken);
   }
   return (
-    <Router>
-      <Routes>
-        <TokenContext.Provider value={{token, handleToken}}>
-        <Route path="/" element={<SignInPage />} />
-        <Route path="/cadastro" element={<SignUpPage />} />
-        <Route path="/habitos" element={<HabitsPage />} />
-        <Route path="/hoje" element={<TodayPage />} />
-        <Route path="/historico" element={<HistoryPage />} />
-        </TokenContext.Provider>
-      </Routes>
-    </Router>
+    <TokenContext.Provider value={{ token, handleToken }}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<SignInPage />} />
+          <Route path="/cadastro" element={<SignUpPage />} />
+          <Route path="/habitos" element={<HabitsPage />} />
+          <Route path="/hoje" element={<TodayPage />} />
+          <Route path="/historico" element={<HistoryPage />} />
+        </Routes>
+      </Router>
+    </TokenContext.Provider>
   );
 }
 
