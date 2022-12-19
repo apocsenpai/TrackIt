@@ -4,9 +4,10 @@ import { BASE_URL } from "../../../constants/BASE_URL";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { HabitListContext } from "../../../Contexts/HabitListContext";
+import SkeletonLoading from "../../Common/LoadingPage";
 
 const Habits = () => {
-  const { token , todayList } = useContext(TokenContext);
+  const { token } = useContext(TokenContext);
   const { updateHabitList } = useContext(HabitListContext);
   const [habitList, setHabitList] = useState(null);
   useEffect(() => {
@@ -21,7 +22,7 @@ const Habits = () => {
     promise.catch((err) => console.log(err.response.data));
   }, [updateHabitList]);
   if (!habitList) {
-    return <></>;
+    return <SkeletonLoading width={'100%'} height={"106px"} number={8}/>
   }
   return (
     <ul>

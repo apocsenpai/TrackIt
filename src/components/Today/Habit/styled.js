@@ -3,7 +3,7 @@ import { secondaryColor, textColor } from "../../../constants/colors";
 export const HabitCard = styled.li`
   position: relative;
   min-width: 340px;
-  min-height: 91px;
+  min-height: 106px;
   border-radius: 5px;
   background-color: ${secondaryColor};
   display: flex;

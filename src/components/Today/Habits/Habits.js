@@ -4,6 +4,7 @@ import { BASE_URL } from "../../../constants/BASE_URL";
 import axios from "axios";
 import { NoHabitMessage } from "./styled";
 import Habit from "../Habit/Habit";
+import SkeletonLoading from "../../Common/LoadingPage";
 const Habits = () => {
   const { token, setAccumulativeChecks, setCheckedPercent, setTotalTodayList } =
     useContext(TokenContext);
@@ -27,7 +28,7 @@ const Habits = () => {
     promise.catch((err) => console.log(err.response.date));
   }, []);
   if (!todayList) {
-    return <></>;
+    return <SkeletonLoading width={'100%'} height={"106px"} number={8}/>;
   }
   return (
     <ul>
