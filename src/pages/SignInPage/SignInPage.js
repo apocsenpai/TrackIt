@@ -10,7 +10,7 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { TokenContext } from "../../Contexts/TokenContext";
 const SignInPage = () => {
-  const {handleToken} = useContext(TokenContext);
+  const { handleToken, handleUserImage } = useContext(TokenContext);
   const [signInForm, setSignInForm] = useState({
     email: "",
     password: "",
@@ -29,10 +29,11 @@ const SignInPage = () => {
     promise.then((res) => {
       navigate("/hoje");
       handleToken(res.data.token);
+      handleUserImage(res.data.image);
     });
     promise.catch((err) => {
       alert("Usuário ou Senha inválidos! Por favor, tente novamente.");
-      console.log(err)
+      console.log(err);
       setIsLoading(false);
     });
   }

@@ -47,7 +47,7 @@ const NewHabit = ({
     promise.then((res) => {
       handleButtonAddHabit();
       handleUpdateList();
-      setHabitTitle('');
+      setHabitTitle("");
       addSelectedDays(null);
     });
     promise.catch((err) => {

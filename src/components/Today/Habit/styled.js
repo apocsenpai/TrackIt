@@ -27,11 +27,17 @@ export const CheckButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  border: none;
+  border: 1px solid ${({ done }) => (done ? "transparent" : "#E7E7E7")};
   height: 70px;
   width: 70px;
-  background-color: #8FC549;
+  background-color: ${({ done }) => (done ? "#8fc549" : "#EBEBEB")};
   border-radius: 5px;
   color: ${secondaryColor};
   font-size: 40px;
+`;
+export const Current = styled.span`
+  color: ${({ done }) => (done ? "#8fc549" : "")};
+`;
+export const Highest = styled.span`
+color: ${({ done, highestEqualCurrent }) => (done && highestEqualCurrent ? "#8fc549" : "")};
 `;

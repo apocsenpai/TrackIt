@@ -1,17 +1,17 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { accentColor, secondaryColor } from "../../constants/colors";
-
+import { TokenContext } from "../../Contexts/TokenContext";
 const NavBarContainer = () => {
+  const { userImage } = useContext(TokenContext);
   return (
     <NavBar>
-      <Link to="/hoje"><p>TrackIt</p></Link>
+      <Link to="/hoje">
+        <p>TrackIt</p>
+      </Link>
       <div>
-        <img
-          src={
-            "https://cdn.pixabay.com/photo/2012/11/21/17/02/lion-66898_960_720.jpg"
-          }
-        />
+        <img src={userImage} />
       </div>
     </NavBar>
   );
@@ -30,11 +30,11 @@ const NavBar = styled.nav`
   left: 0;
   box-shadow: 0px 4px 4px 0px #00000026;
   z-index: 1;
-  a{
+  a {
     text-decoration: none;
   }
-  p{
-    font-family: 'Playball', cursive;
+  p {
+    font-family: "Playball", cursive;
     color: ${secondaryColor};
     font-size: 40px;
   }
@@ -43,8 +43,12 @@ const NavBar = styled.nav`
     height: 51px;
     overflow: hidden;
     border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     img {
-      width: 100%;
+      height: 51px;
+      object-fit: cover;
     }
   }
 `;

@@ -12,16 +12,17 @@ const HabitsPage = () => {
   const [updateHabitList, setUpdateHabitList] = useState(false);
   const [selectedDays, setSelectedDay] = useState([]);
   const [habitTitle, setHabitTitle] = useState("");
+
   function addSelectedDays(id) {
-    if (!id) {
+    if(id===null){
       setSelectedDay([]);
-      return;
-    } else if (selectedDays.includes(id)) {
+    }else if (selectedDays.includes(id)) {
       const filteredDays = selectedDays.filter((idDay) => idDay !== id);
       setSelectedDay(filteredDays);
-      return;
+    } else{
+      setSelectedDay([...selectedDays, id]);
     }
-    setSelectedDay([...selectedDays, id]);
+
   }
   function handleButtonAddHabit() {
     setToggleAddHabit(!toggleAddHabit);
@@ -31,7 +32,7 @@ const HabitsPage = () => {
   }
   return (
     <HabitListContext.Provider value={{ handleUpdateList, updateHabitList }}>
-      <NavBarContainer />
+      
       <MainContainer>
         <section>
           <h2>Meus hábitos</h2>
@@ -50,7 +51,7 @@ const HabitsPage = () => {
         )}
         <Habits />
       </MainContainer>
-      <MenuContainer />
+
     </HabitListContext.Provider>
   );
 };

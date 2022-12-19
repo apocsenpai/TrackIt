@@ -1,8 +1,5 @@
 import styled from "styled-components";
-import {
-  accentColor,
-  backgroundColor,
-} from "../../constants/colors";
+import { accentColor, backgroundColor } from "../../constants/colors";
 
 export const MainContainer = styled.div`
   margin-top: 70px;
@@ -30,5 +27,5 @@ export const MainContainer = styled.div`
 export const Subtitle = styled.p`
   margin-top: 5px;
   font-size: 18px;
-  color: #bababa;
+  color: ${({ checkedPercent }) => (!checkedPercent ? "#bababa" : "#8FC549")};
 `;

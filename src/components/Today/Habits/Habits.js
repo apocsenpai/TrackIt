@@ -5,7 +5,7 @@ import axios from "axios";
 import { NoHabitMessage } from "./styled";
 import Habit from "../Habit/Habit";
 const Habits = () => {
-  const { token } = useContext(TokenContext);
+  const { token, isChecked, setCheckedPercent } = useContext(TokenContext);
   const [todayList, setTodayList] = useState(null);
   useEffect(() => {
     const url = `${BASE_URL}habits/today`;
@@ -15,10 +15,15 @@ const Habits = () => {
       },
     };
     const promise = axios.get(url, config);
-    promise.then((res) => setTodayList(res.data));
+    promise.then((res) => {
+      const list = res.data;
+      setTodayList(list);
+      const checkedHabits = list.filter((l) => l.done).length;
+      setCheckedPercent((checkedHabits / list.length) * 100);
+    });
     promise.catch((err) => console.log(err.response.date));
-  }, []);
-  if(!todayList){
+  }, [isChecked]);
+  if (!todayList) {
     return <></>;
   }
   return (
@@ -29,7 +34,11 @@ const Habits = () => {
           para começar a trackear!
         </NoHabitMessage>
       ) : (
-        <Habit />
+        <>
+          {todayList.map((t) => (
+            <Habit key={t.id} todayHabit={t} />
+          ))}
+        </>
       )}
     </ul>
   );

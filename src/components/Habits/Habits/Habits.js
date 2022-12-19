@@ -6,7 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import { HabitListContext } from "../../../Contexts/HabitListContext";
 
 const Habits = () => {
-  const { token } = useContext(TokenContext);
+  const { token , todayList } = useContext(TokenContext);
   const { updateHabitList } = useContext(HabitListContext);
   const [habitList, setHabitList] = useState(null);
   useEffect(() => {

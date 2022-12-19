@@ -3,7 +3,12 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import "react-circular-progressbar/dist/styles.css";
 import { baseColor, secondaryColor } from "../../constants/colors";
+import { useContext } from "react";
+import { TokenContext } from "../../Contexts/TokenContext";
+
 const MenuContainer = () => {
+  const { checkedPercent } = useContext(TokenContext);
+
   return (
     <Menu>
       <Link to="/habitos">Hábitos</Link>
@@ -11,15 +16,15 @@ const MenuContainer = () => {
         <Link to="/hoje">
           <div>
             <CircularProgressbar
-              value={66}
+              value={checkedPercent}
               text={`Hoje`}
               strokeWidth={11}
               styles={buildStyles({
-                pathTransitionDuration: 0.5,
+                pathTransitionDuration: 0.6,
                 pathColor: `${secondaryColor}`,
                 textColor: `${secondaryColor}`,
-                trailColor: 'transparent',
-                textSize: '24px'
+                trailColor: "transparent",
+                textSize: "24px",
               })}
             />
           </div>
