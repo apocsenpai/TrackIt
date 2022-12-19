@@ -22,7 +22,7 @@ const TodayPage = () => {
           <Subtitle checkedPercent={checkedPercent}>
             {!checkedPercent
               ? `Nenhum hábito concluído ainda`
-              : `${checkedPercent.toFixed(2).toString().replace(".",",")}% dos hábitos concluídos`}
+              : `${checkedPercent}% dos hábitos concluídos`}
           </Subtitle>
         </section>
         <Habits />

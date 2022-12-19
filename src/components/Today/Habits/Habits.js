@@ -5,7 +5,8 @@ import axios from "axios";
 import { NoHabitMessage } from "./styled";
 import Habit from "../Habit/Habit";
 const Habits = () => {
-  const { token, isChecked, setCheckedPercent } = useContext(TokenContext);
+  const { token, setAccumulativeChecks, setCheckedPercent, setTotalTodayList } =
+    useContext(TokenContext);
   const [todayList, setTodayList] = useState(null);
   useEffect(() => {
     const url = `${BASE_URL}habits/today`;
@@ -18,11 +19,13 @@ const Habits = () => {
     promise.then((res) => {
       const list = res.data;
       setTodayList(list);
-      const checkedHabits = list.filter((l) => l.done).length;
-      setCheckedPercent((checkedHabits / list.length) * 100);
+      const totalChecks = list.filter((t) => t.done).length;
+      setAccumulativeChecks(totalChecks);
+      setTotalTodayList(list.length);
+      setCheckedPercent(Math.round((totalChecks / list.length) * 100));
     });
     promise.catch((err) => console.log(err.response.date));
-  }, [isChecked]);
+  }, []);
   if (!todayList) {
     return <></>;
   }

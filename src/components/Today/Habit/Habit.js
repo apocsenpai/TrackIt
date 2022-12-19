@@ -13,20 +13,40 @@ import { BASE_URL } from "../../../constants/BASE_URL";
 import axios from "axios";
 const Habit = ({ todayHabit }) => {
   const { id, name, done, currentSequence, highestSequence } = todayHabit;
-  const { handleCheckHabit, token } = useContext(TokenContext);
+  const { token, handleCheckedPercent } = useContext(TokenContext);
   const [isDone, setIsDone] = useState(done);
-  function handleClickedHabit(id, done) {
-    setIsDone(!isDone);
-    const isHabitChecked = done ? "uncheck" : "check";
-    const url = `${BASE_URL}habits/${id}/${isHabitChecked}`;
+  const [localCurrent, setLocalCurrent] = useState(currentSequence);
+  const [localHighest, setLocalHighest] = useState(highestSequence);
+  const highestEqualCurrent = localCurrent === localHighest;
 
+  function handleClickedHabit(id) {
+    let localCheck = 0;
+    const isHabitChecked = isDone ? "uncheck" : "check";
+    const url = `${BASE_URL}habits/${id}/${isHabitChecked}`;
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     };
     const promise = axios.post(url, {}, config);
-    promise.then(() => handleCheckHabit());
+    promise.then(() => {
+      setIsDone(!isDone);
+      //podia ter usado um switch case aqui
+      if (!isDone) {
+        setLocalCurrent(localCurrent + 1);
+        if (highestEqualCurrent) {
+          setLocalHighest(localHighest + 1);
+        }
+        localCheck++;
+      } else {
+        setLocalCurrent(localCurrent - 1);
+        if (highestEqualCurrent) {
+          setLocalHighest(localHighest - 1);
+        }
+        localCheck--;
+      }
+      handleCheckedPercent(localCheck);
+    });
     promise.catch((err) => console.log(err.response.data));
   }
   return (
@@ -35,19 +55,17 @@ const Habit = ({ todayHabit }) => {
         <div>
           <HabitTitle>{name}</HabitTitle>
           <HabitSubtitle>
-            Sequência atual: <Current done={done}>{currentSequence} dia(s)</Current>
+            Sequência atual:{" "}
+            <Current done={isDone}>{localCurrent} dia(s)</Current>
           </HabitSubtitle>
           <HabitSubtitle>
             Seu recorde:{" "}
-            <Highest
-              done={done}
-              highestEqualCurrent={currentSequence === highestSequence}
-            >
-              {highestSequence} dia(s)
+            <Highest done={isDone} highestEqualCurrent={highestEqualCurrent}>
+              {localHighest} dia(s)
             </Highest>
           </HabitSubtitle>
         </div>
-        <CheckButton onClick={() => handleClickedHabit(id, done)} done={isDone}>
+        <CheckButton onClick={() => handleClickedHabit(id)} done={isDone}>
           <BsCheckLg />
         </CheckButton>
       </HabitCard>

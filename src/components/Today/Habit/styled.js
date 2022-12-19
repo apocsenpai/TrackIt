@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { secondaryColor, textColor } from "../../../constants/colors";
 export const HabitCard = styled.li`
   position: relative;
-  width: 340px;
+  min-width: 340px;
   min-height: 91px;
   border-radius: 5px;
   background-color: ${secondaryColor};

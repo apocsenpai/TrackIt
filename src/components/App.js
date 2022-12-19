@@ -12,16 +12,21 @@ import MenuContainer from "./Footer/MenuContainer";
 function App() {
   const [token, setToken] = useState("");
   const [userImage, setUserImage] = useState("");
-  const [isChecked, setIsChecked] = useState(false);
   const [checkedPercent, setCheckedPercent] = useState(0);
+  const [accumulativeChecks, setAccumulativeChecks] = useState(0);
+  const [totalTodayList, setTotalTodayList] = useState(0);
   function handleToken(userToken) {
     setToken(userToken);
   }
   function handleUserImage(image) {
     setUserImage(image);
   }
-  function handleCheckHabit() {
-    setIsChecked(!isChecked);
+
+  function handleCheckedPercent(localCheck) {
+    const localAccumulativeChecks = accumulativeChecks+localCheck;
+
+    setAccumulativeChecks(localAccumulativeChecks);
+    setCheckedPercent(Math.round(((localAccumulativeChecks) / totalTodayList) * 100));
   }
 
   return (
@@ -31,14 +36,15 @@ function App() {
         handleToken,
         userImage,
         handleUserImage,
-        isChecked,
-        handleCheckHabit,
         checkedPercent,
-        setCheckedPercent
+        handleCheckedPercent,
+        setAccumulativeChecks,
+        setCheckedPercent,
+        setTotalTodayList
       }}
     >
       <Router>
-        {token && <NavBarContainer/>}
+        {token && <NavBarContainer />}
         <Routes>
           <Route path="/" element={<SignInPage />} />
           <Route path="/cadastro" element={<SignUpPage />} />
@@ -46,7 +52,7 @@ function App() {
           <Route path="/hoje" element={<TodayPage />} />
           <Route path="/historico" element={<HistoryPage />} />
         </Routes>
-        {token && <MenuContainer/>}
+        {token && <MenuContainer />}
       </Router>
     </TokenContext.Provider>
   );
