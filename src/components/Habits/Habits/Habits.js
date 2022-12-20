@@ -13,7 +13,7 @@ const Habits = () => {
   const [habitList, setHabitList] = useState(null);
   const navigate = useNavigate();
   useEffect(() => {
-    if(!token){
+    if (!token) {
       navigate("/");
       return;
     }
@@ -24,11 +24,13 @@ const Habits = () => {
     };
     const url = `${BASE_URL}/habits`;
     const promise = axios.get(url, config);
-    promise.then((res) => {setHabitList(res.data)});
+    promise.then((res) => {
+      setHabitList(res.data);
+    });
     promise.catch((err) => console.log(err.response.data));
   }, [updateHabitList]);
   if (!habitList) {
-    return <SkeletonLoading width={'100%'} height={"106px"} number={8}/>
+    return <SkeletonLoading width={"100%"} height={"106px"} number={8} />;
   }
   return (
     <ul>
@@ -39,7 +41,13 @@ const Habits = () => {
         </p>
       ) : (
         habitList.map(({ id, name, days }) => (
-          <Habit key={id} id={id} name={name} days={days} />
+          <Habit
+            key={id}
+            id={id}
+            name={name}
+            days={days}
+            test="habit-container"
+          />
         ))
       )}
     </ul>
