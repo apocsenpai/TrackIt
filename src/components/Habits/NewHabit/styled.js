@@ -6,7 +6,7 @@ import {
 } from "../../../constants/colors";
 import BlueButton from "../../Common/BlueButton";
 export const HabitAddForm = styled.form`
-  width: 340px;
+  width: 100%;
   height: 180px;
   border-radius: 5px;
   background-color: ${secondaryColor};
@@ -18,7 +18,7 @@ export const HabitAddForm = styled.form`
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 `;
 export const Input = styled.input`
-  width: 303px;
+  width: 100%;
   height: 45px;
   padding-left: 16px;
   font-size: 18px;

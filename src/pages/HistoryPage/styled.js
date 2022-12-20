@@ -2,7 +2,6 @@ import styled from "styled-components";
 import {
   accentColor,
   backgroundColor,
-  textColor,
 } from "../../constants/colors";
 
 export const MainContainer = styled.div`
@@ -11,6 +10,8 @@ export const MainContainer = styled.div`
   width: 100%;
   background-color: ${backgroundColor};
   min-height: 90vh;
+  display: flex;
+  flex-direction: column;
   section {
     display: flex;
     justify-content: space-between;
@@ -29,8 +30,7 @@ export const MainContainer = styled.div`
       justify-content: center;
     }
   }
-  p {
-    color: ${textColor};
-    font-size: 18px;
+  &>div{
+    align-self: center;
   }
 `;
