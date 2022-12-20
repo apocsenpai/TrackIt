@@ -39,7 +39,7 @@ const HistoryPage = () => {
   }
   return (
     <>
-      <MainContainer>
+      <MainContainer data-test="calendar">
         <section>
           <h2>Histórico</h2>
         </section>
@@ -47,7 +47,6 @@ const HistoryPage = () => {
           <SkeletonLoading width={"335px"} height={"300px"} />
         ) : (
           <Calendar
-            data-test="calendar"
             onChange={onChange}
             value={value}
             locale={locale}

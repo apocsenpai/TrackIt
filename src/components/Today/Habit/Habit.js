@@ -65,7 +65,7 @@ const Habit = ({ todayHabit }) => {
             </Highest>
           </HabitSubtitle>
         </div>
-        <CheckButton data-test="today-habit-check" onClick={() => handleClickedHabit(id)} done={isDone}>
+        <CheckButton data-test="today-habit-check-btn" onClick={() => handleClickedHabit(id)} done={isDone}>
           <BsCheckLg />
         </CheckButton>
       </HabitCard>

@@ -76,7 +76,7 @@ const SignInPage = () => {
           />
           <label>senha</label>
         </div>
-        <BlueButton type={`submit`} data-test="login-btn">
+        <BlueButton type={`submit`} disabled={isLoading} data-test="login-btn">
           {isLoading ? (
             <ThreeDots
               height="30"

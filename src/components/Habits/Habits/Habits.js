@@ -24,7 +24,7 @@ const Habits = () => {
     };
     const url = `${BASE_URL}/habits`;
     const promise = axios.get(url, config);
-    promise.then((res) => setHabitList(res.data));
+    promise.then((res) => {setHabitList(res.data)});
     promise.catch((err) => console.log(err.response.data));
   }, [updateHabitList]);
   if (!habitList) {

@@ -84,6 +84,7 @@ const NewHabit = ({
       </ButtonGroup>
       <FormButtonGroup>
         <CancelButton
+          type={`button`}
           onClick={handleButtonAddHabit}
           data-test="habit-create-cancel-btn"
           disabled={isLoading}
@@ -117,6 +118,7 @@ const Day = ({ id, children, addSelectedDays, isSelected }) => {
       <DayButton
         isSelected={isSelected}
         data-test="habit-day"
+        type={`button`}
         onClick={() => addSelectedDays(id)}
       >
         {children}

@@ -45,7 +45,7 @@ export const ButtonGroup = styled.div`
   align-self: flex-start;
   margin-bottom: 30px;
 `;
-export const DayButton = styled.div`
+export const DayButton = styled.button`
   background-color: ${({ isSelected }) =>
     isSelected ? "#CFCFCF" : secondaryColor};
   border: 1px solid ${({ isSelected }) => (isSelected ? "#CFCFCF" : "#d5d5d5")};
