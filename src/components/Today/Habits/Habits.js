@@ -5,11 +5,16 @@ import axios from "axios";
 import { NoHabitMessage } from "./styled";
 import Habit from "../Habit/Habit";
 import SkeletonLoading from "../../Common/LoadingPage";
+import { useNavigate } from "react-router-dom";
 const Habits = () => {
   const { token, setAccumulativeChecks, setCheckedPercent, setTotalTodayList } =
     useContext(TokenContext);
   const [todayList, setTodayList] = useState(null);
+  const navigate = useNavigate();
   useEffect(() => {
+    if (!token) {
+      navigate("/");
+    }
     const url = `${BASE_URL}habits/today`;
     const config = {
       headers: {
@@ -28,7 +33,7 @@ const Habits = () => {
     promise.catch((err) => console.log(err.response.date));
   }, []);
   if (!todayList) {
-    return <SkeletonLoading width={'100%'} height={"106px"} number={8}/>;
+    return <SkeletonLoading width={"100%"} height={"106px"} number={8} />;
   }
   return (
     <ul>

@@ -1,19 +1,38 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { accentColor, secondaryColor } from "../../constants/colors";
 import { TokenContext } from "../../Contexts/TokenContext";
+import { IoMdExit } from "react-icons/io";
 const NavBarContainer = () => {
-  const { userImage } = useContext(TokenContext);
+  const { userImage, handleUser } = useContext(TokenContext);
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+  function logOffUser() {
+    const confirmLogOff = window.confirm("Tem certeza que deseja sair?");
+    if (confirmLogOff) {
+      localStorage.removeItem("user");
+      navigate("/");
+    }
+  }
   return (
-    <NavBar>
-      <Link to="/hoje">
-        <p>TrackIt</p>
-      </Link>
-      <div>
-        <img src={userImage} />
-      </div>
-    </NavBar>
+    <>
+      {pathname === "/" || pathname === "/cadastro" ? (
+        ""
+      ) : (
+        <NavBar>
+          <Link to="/hoje">
+            <p>TrackIt</p>
+          </Link>
+          <div>
+            <img src={userImage} />
+          </div>
+          <button onClick={logOffUser}>
+            <IoMdExit size="30px" />
+          </button>
+        </NavBar>
+      )}
+    </>
   );
 };
 
@@ -49,6 +68,16 @@ const NavBar = styled.nav`
     img {
       height: 51px;
       object-fit: cover;
+    }
+  }
+  button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: ${secondaryColor};
+    transition: 150ms linear;
+    &:hover {
+      color: #aaa;
     }
   }
 `;

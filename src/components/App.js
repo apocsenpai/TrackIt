@@ -15,16 +15,12 @@ function App() {
   const [checkedPercent, setCheckedPercent] = useState(0);
   const [accumulativeChecks, setAccumulativeChecks] = useState(0);
   const [totalTodayList, setTotalTodayList] = useState(0);
-  function handleToken(userToken) {
-    setToken(userToken);
+  function handleUser(user) {
+    setToken(user.token);
+    setUserImage(user.image);
   }
-  function handleUserImage(image) {
-    setUserImage(image);
-  }
-
   function handleCheckedPercent(localCheck) {
     const localAccumulativeChecks = accumulativeChecks+localCheck;
-
     setAccumulativeChecks(localAccumulativeChecks);
     setCheckedPercent(Math.round(((localAccumulativeChecks) / totalTodayList) * 100));
   }
@@ -33,9 +29,8 @@ function App() {
     <TokenContext.Provider
       value={{
         token,
-        handleToken,
+        handleUser,
         userImage,
-        handleUserImage,
         checkedPercent,
         handleCheckedPercent,
         setAccumulativeChecks,
@@ -44,7 +39,7 @@ function App() {
       }}
     >
       <Router>
-        {token && <NavBarContainer />}
+        <NavBarContainer />
         <Routes>
           <Route path="/" element={<SignInPage />} />
           <Route path="/cadastro" element={<SignUpPage />} />
@@ -52,7 +47,7 @@ function App() {
           <Route path="/hoje" element={<TodayPage />} />
           <Route path="/historico" element={<HistoryPage />} />
         </Routes>
-        {token && <MenuContainer />}
+        <MenuContainer />
       </Router>
     </TokenContext.Provider>
   );

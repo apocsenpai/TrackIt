@@ -10,14 +10,19 @@ import SkeletonLoading from "../../components/Common/LoadingPage";
 import styled from "styled-components";
 import { weekDays } from "../../constants/weekDays";
 import { accentColor, secondaryColor, textColor } from "../../constants/colors";
+import { useNavigate } from "react-router-dom";
 const HistoryPage = () => {
   const [value, onChange] = useState(dayjs().$d);
   const locale = "pt-BR";
   const [dailyHabitsList, setDailyHabitsList] = useState(null);
   const [showDisplayHabit, setShowDisplayHabit] = useState(null);
   const { token } = useContext(TokenContext);
-  console.log(showDisplayHabit);
+  const navigate = useNavigate();
   useEffect(() => {
+    if (!token) {
+      navigate("/");
+      return;
+    }
     const url = `${BASE_URL}habits/history/daily`;
     const config = {
       headers: {
@@ -106,7 +111,7 @@ const DisplayHabit = ({ dayHabit, setShowDisplayHabit }) => {
 
 const CalendarDay = styled.div`
   width: 100%;
-  height: 100%;
+  height: 35px;
   ${({ isHabitDay }) => {
     if (!isHabitDay) {
       return "";
@@ -117,7 +122,7 @@ const CalendarDay = styled.div`
       }`;
     }
   }};
-  border-radius: 50%;
+  border-radius: 100%;
   display: flex;
   align-items: center;
   justify-content: center;

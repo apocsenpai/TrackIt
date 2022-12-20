@@ -1,5 +1,5 @@
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import "react-circular-progressbar/dist/styles.css";
 import { baseColor, secondaryColor } from "../../constants/colors";
@@ -8,30 +8,37 @@ import { TokenContext } from "../../Contexts/TokenContext";
 
 const MenuContainer = () => {
   const { checkedPercent } = useContext(TokenContext);
+  const { pathname } = useLocation();
 
   return (
-    <Menu>
-      <Link to="/habitos">Hábitos</Link>
-      <div>
-        <Link to="/hoje">
+    <>
+      {pathname === "/" || pathname === "/cadastro" ? (
+        ""
+      ) : (
+        <Menu>
+          <Link to="/habitos">Hábitos</Link>
           <div>
-            <CircularProgressbar
-              value={checkedPercent}
-              text={`Hoje`}
-              strokeWidth={11}
-              styles={buildStyles({
-                pathTransitionDuration: 0.6,
-                pathColor: `${secondaryColor}`,
-                textColor: `${secondaryColor}`,
-                trailColor: "transparent",
-                textSize: "24px",
-              })}
-            />
+            <Link to="/hoje">
+              <div>
+                <CircularProgressbar
+                  value={checkedPercent}
+                  text={`Hoje`}
+                  strokeWidth={11}
+                  styles={buildStyles({
+                    pathTransitionDuration: 0.6,
+                    pathColor: `${secondaryColor}`,
+                    textColor: `${secondaryColor}`,
+                    trailColor: "transparent",
+                    textSize: "24px",
+                  })}
+                />
+              </div>
+            </Link>
           </div>
-        </Link>
-      </div>
-      <Link to="/historico">Histórico</Link>
-    </Menu>
+          <Link to="/historico">Histórico</Link>
+        </Menu>
+      )}
+    </>
   );
 };
 

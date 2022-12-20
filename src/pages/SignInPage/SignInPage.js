@@ -7,19 +7,27 @@ import { ThreeDots } from "react-loader-spinner";
 import { secondaryColor } from "../../constants/colors";
 import { BASE_URL } from "../../constants/BASE_URL";
 import axios from "axios";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { TokenContext } from "../../Contexts/TokenContext";
 const SignInPage = () => {
-  const { handleToken, handleUserImage } = useContext(TokenContext);
+  const { handleUser } = useContext(TokenContext);
   const [signInForm, setSignInForm] = useState({
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  useEffect(() => {
+    const serializedUserData = localStorage.getItem("user");
+    const localUser = JSON.parse(serializedUserData);
+    if (localUser) {
+      handleUser(localUser);
+      navigate("/hoje");
+    }
+  }, []);
   function handleSignInForm(e) {
     setSignInForm({ ...signInForm, [e.target.name]: e.target.value });
   }
-  const navigate = useNavigate();
   function loginUser(e) {
     e.preventDefault();
     setIsLoading(!isLoading);
@@ -28,8 +36,9 @@ const SignInPage = () => {
     const promise = axios.post(url, body);
     promise.then((res) => {
       navigate("/hoje");
-      handleToken(res.data.token);
-      handleUserImage(res.data.image);
+      handleUser(res.data);
+      const serializedUserData = JSON.stringify(res.data);
+      localStorage.setItem("user", serializedUserData);
     });
     promise.catch((err) => {
       alert("Usuário ou Senha inválidos! Por favor, tente novamente.");

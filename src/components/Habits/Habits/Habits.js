@@ -5,12 +5,18 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { HabitListContext } from "../../../Contexts/HabitListContext";
 import SkeletonLoading from "../../Common/LoadingPage";
+import { useNavigate } from "react-router-dom";
 
 const Habits = () => {
   const { token } = useContext(TokenContext);
   const { updateHabitList } = useContext(HabitListContext);
   const [habitList, setHabitList] = useState(null);
+  const navigate = useNavigate();
   useEffect(() => {
+    if(!token){
+      navigate("/");
+      return;
+    }
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,

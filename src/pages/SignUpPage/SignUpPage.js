@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/img/logoSign.svg";
 import BlueButton from "../../components/Common/BlueButton";
@@ -8,7 +8,9 @@ import SignInput from "../../components/Common/SignInput";
 import { BASE_URL } from "../../constants/BASE_URL";
 import { ThreeDots } from "react-loader-spinner";
 import { secondaryColor } from "../../constants/colors";
+import { TokenContext } from "../../Contexts/TokenContext";
 const SignUpPage = () => {
+  const { handleUser } = useContext(TokenContext);
   const [signUpForm, setSignUpForm] = useState({
     email: "",
     name: "",
@@ -17,6 +19,13 @@ const SignUpPage = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  useEffect(() => {
+    const localToken = localStorage.getItem("token");
+    if (localToken) {
+      handleUser(localToken);
+      navigate("/hoje");
+    }
+  }, []);
   function handleSignUpForm(e) {
     setSignUpForm({ ...signUpForm, [e.target.name]: e.target.value });
   }
