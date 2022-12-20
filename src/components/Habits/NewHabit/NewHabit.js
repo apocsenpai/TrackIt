@@ -56,13 +56,17 @@ const NewHabit = ({
     });
   }
   return (
-    <HabitAddForm onSubmit={handleHabitAddForm}>
+    <HabitAddForm
+      onSubmit={handleHabitAddForm}
+      data-test="habit-create-container"
+    >
       <Input
         type={`text`}
         value={habitTitle}
         onChange={(e) => setHabitTitle(e.target.value)}
         disabled={isLoading}
         placeholder="nome do hábito"
+        data-test="habit-name-input"
         required
       />
       <ButtonGroup>
@@ -79,10 +83,18 @@ const NewHabit = ({
         ))}
       </ButtonGroup>
       <FormButtonGroup>
-        <CancelButton onClick={handleButtonAddHabit} disabled={isLoading}>
+        <CancelButton
+          onClick={handleButtonAddHabit}
+          data-test="habit-create-cancel-btn"
+          disabled={isLoading}
+        >
           Cancelar
         </CancelButton>
-        <SaveButton type="submit" disabled={isLoading}>
+        <SaveButton
+          type="submit"
+          data-test="habit-create-save-btn"
+          disabled={isLoading}
+        >
           {isLoading ? (
             <ThreeDots
               height="30"
@@ -102,7 +114,11 @@ const NewHabit = ({
 const Day = ({ id, children, addSelectedDays, isSelected }) => {
   return (
     <>
-      <DayButton isSelected={isSelected} onClick={() => addSelectedDays(id)}>
+      <DayButton
+        isSelected={isSelected}
+        data-test="habit-day"
+        onClick={() => addSelectedDays(id)}
+      >
         {children}
       </DayButton>
     </>

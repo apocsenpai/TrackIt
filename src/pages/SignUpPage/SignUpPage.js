@@ -53,6 +53,7 @@ const SignUpPage = () => {
             value={signUpForm.email}
             placeholder=""
             disabled={isLoading}
+            data-test="email-input"
             required
           />
           <label>email</label>
@@ -65,6 +66,7 @@ const SignUpPage = () => {
             value={signUpForm.password}
             placeholder=""
             disabled={isLoading}
+            data-test="password-input"
             required
           />
           <label>senha</label>
@@ -77,6 +79,7 @@ const SignUpPage = () => {
             value={signUpForm.name}
             placeholder=""
             disabled={isLoading}
+            data-test="user-name-input"
             required
           />
           <label>nome</label>
@@ -89,11 +92,12 @@ const SignUpPage = () => {
             value={signUpForm.image}
             placeholder=""
             disabled={isLoading}
+            data-test="user-image-input"
             required
           />
           <label>foto</label>
         </div>
-        <BlueButton type={`submit`} disabled={isLoading}>
+        <BlueButton type={`submit`} data-test="signup-btn" disabled={isLoading}>
           {isLoading ? (
             <ThreeDots
               height="30"
@@ -106,7 +110,7 @@ const SignUpPage = () => {
           )}
         </BlueButton>
       </form>
-      <Link to="/">Já tem uma conta? Faça login!</Link>
+      <Link to="/"  data-test="login-link">Já tem uma conta? Faça login!</Link>
     </SignContainer>
   );
 };

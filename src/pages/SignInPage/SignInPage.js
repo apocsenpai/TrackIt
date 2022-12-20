@@ -58,6 +58,7 @@ const SignInPage = () => {
             name="email"
             placeholder=""
             disabled={isLoading}
+            data-test="email-input"
             required
           />
           <label>email</label>
@@ -70,11 +71,12 @@ const SignInPage = () => {
             name="password"
             placeholder=""
             disabled={isLoading}
+            data-test="password-input"
             required
           />
           <label>senha</label>
         </div>
-        <BlueButton type={`submit`}>
+        <BlueButton type={`submit`} data-test="login-btn">
           {isLoading ? (
             <ThreeDots
               height="30"
@@ -87,7 +89,7 @@ const SignInPage = () => {
           )}
         </BlueButton>
       </form>
-      <Link to="/cadastro">Não tem uma conta? Cadastre-se!</Link>
+      <Link to="/cadastro" data-test="signup-link">Não tem uma conta? Cadastre-se!</Link>
     </SignContainer>
   );
 };

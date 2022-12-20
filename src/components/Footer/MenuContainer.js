@@ -15,10 +15,10 @@ const MenuContainer = () => {
       {pathname === "/" || pathname === "/cadastro" ? (
         ""
       ) : (
-        <Menu>
-          <Link to="/habitos">Hábitos</Link>
+        <Menu  data-test="menu">
+          <Link to="/habitos" data-test="habit=link">Hábitos</Link>
           <div>
-            <Link to="/hoje">
+            <Link to="/hoje" data-test="today-link">
               <div>
                 <CircularProgressbar
                   value={checkedPercent}

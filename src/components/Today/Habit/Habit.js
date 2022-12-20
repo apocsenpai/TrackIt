@@ -51,21 +51,21 @@ const Habit = ({ todayHabit }) => {
   }
   return (
     <>
-      <HabitCard>
+      <HabitCard data-test="today-habit-container">
         <div>
-          <HabitTitle>{name}</HabitTitle>
-          <HabitSubtitle>
+          <HabitTitle data-test="today-habit-name">{name}</HabitTitle>
+          <HabitSubtitle data-test="today-habit-sequence">
             Sequência atual:{" "}
             <Current done={isDone}>{localCurrent} dia(s)</Current>
           </HabitSubtitle>
-          <HabitSubtitle>
+          <HabitSubtitle data-test="today-habit-record">
             Seu recorde:{" "}
             <Highest done={isDone} highestEqualCurrent={highestEqualCurrent}>
               {localHighest} dia(s)
             </Highest>
           </HabitSubtitle>
         </div>
-        <CheckButton onClick={() => handleClickedHabit(id)} done={isDone}>
+        <CheckButton data-test="today-habit-check" onClick={() => handleClickedHabit(id)} done={isDone}>
           <BsCheckLg />
         </CheckButton>
       </HabitCard>

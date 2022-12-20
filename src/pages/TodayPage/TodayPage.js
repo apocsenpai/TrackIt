@@ -18,8 +18,8 @@ const TodayPage = () => {
     <>
       <MainContainer>
         <section>
-          <h2>{`${handleWeekDay(idWeekDay)}, ${day}/${month}`}</h2>
-          <Subtitle checkedPercent={checkedPercent}>
+          <h2 data-test="today">{`${handleWeekDay(idWeekDay)}, ${day}/${month}`}</h2>
+          <Subtitle checkedPercent={checkedPercent} data-test="today-counter">
             {!checkedPercent
               ? `Nenhum hábito concluído ainda`
               : `${checkedPercent}% dos hábitos concluídos`}

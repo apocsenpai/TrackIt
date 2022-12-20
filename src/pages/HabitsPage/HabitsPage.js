@@ -32,11 +32,11 @@ const HabitsPage = () => {
   }
   return (
     <HabitListContext.Provider value={{ handleUpdateList, updateHabitList }}>
-      
+
       <MainContainer>
         <section>
           <h2>Meus hábitos</h2>
-          <BlueButton onClick={handleButtonAddHabit}>
+          <BlueButton onClick={handleButtonAddHabit} data-test="habit-create-btn">
             <BsPlusLg />
           </BlueButton>
         </section>

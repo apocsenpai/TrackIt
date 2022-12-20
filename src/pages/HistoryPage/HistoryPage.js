@@ -47,6 +47,7 @@ const HistoryPage = () => {
           <SkeletonLoading width={"335px"} height={"300px"} />
         ) : (
           <Calendar
+            data-test="calendar"
             onChange={onChange}
             value={value}
             locale={locale}
@@ -161,7 +162,7 @@ const Modal = styled.div`
     font-size: 23px;
     margin-bottom: 20px;
   }
-  &>ul{
+  & > ul {
     overflow: scroll;
   }
 `;

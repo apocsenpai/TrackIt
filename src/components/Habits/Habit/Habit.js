@@ -31,11 +31,11 @@ const Habit = ({ id, name, days }) => {
     promise.catch((err) => console.log(err.response.data));
   }
   return (
-    <HabitCard>
-      <DeleteIcon onClick={() => deleteHabit(id)}>
+    <HabitCard data-test="habit-container">
+      <DeleteIcon onClick={() => deleteHabit(id)} data-test="habit-delete-btn">
         <BsTrash />
       </DeleteIcon>
-      <HabitTitle>{name}</HabitTitle>
+      <HabitTitle data-test="habit-name">{name}</HabitTitle>
       <ButtonGroup>
         {weekDays.map(({ id, acronym }) => (
           <Day key={id} isSelected={days.includes(id)}>
@@ -49,7 +49,7 @@ const Habit = ({ id, name, days }) => {
 const Day = ({ children, isSelected }) => {
   return (
     <>
-      <DayButton isSelected={isSelected}>{children}</DayButton>
+      <DayButton data-test="habit-day" isSelected={isSelected}>{children}</DayButton>
     </>
   );
 };

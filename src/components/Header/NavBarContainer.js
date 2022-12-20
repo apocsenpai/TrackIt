@@ -5,7 +5,7 @@ import { accentColor, secondaryColor } from "../../constants/colors";
 import { TokenContext } from "../../Contexts/TokenContext";
 import { IoMdExit } from "react-icons/io";
 const NavBarContainer = () => {
-  const { userImage, handleUser } = useContext(TokenContext);
+  const { userImage } = useContext(TokenContext);
   const navigate = useNavigate();
   const { pathname } = useLocation();
   function logOffUser() {
@@ -20,7 +20,7 @@ const NavBarContainer = () => {
       {pathname === "/" || pathname === "/cadastro" ? (
         ""
       ) : (
-        <NavBar>
+        <NavBar  data-test="header">
           <Link to="/hoje">
             <p>TrackIt</p>
           </Link>
